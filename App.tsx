@@ -7,7 +7,7 @@ import { InventoryView } from './components/InventoryView';
 import { SettingsView } from './components/SettingsView';
 import { View, Product, Category, Sale, CartItem, AppConfig, TimePeriod } from './types';
 import { CATEGORIES, INITIAL_PRODUCTS, DEFAULT_CONFIG } from './constants';
-import { MessageCircle, User, ChevronDown, Calendar, Clock, Globe, Zap, Maximize, Minimize } from 'lucide-react';
+import { MessageCircle, User, Calendar, Clock, Globe, Zap, Maximize, Minimize } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('SALES');
@@ -32,12 +32,10 @@ const App: React.FC = () => {
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(err => {
-        console.error(`Error de pantalla completa: ${err.message}`);
-      });
+      document.documentElement.requestFullscreen().catch(() => {});
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {});
       }
     }
   };
@@ -81,11 +79,11 @@ const App: React.FC = () => {
   };
   const handleDeleteProduct = (id: string) => setProducts(prev => prev.filter(p => p.id !== id));
 
-  const periodOptions: Record<TimePeriod, { label: string, sub: string, icon: any, color: string, bg: string }> = {
-    TODAY: { label: 'Hoy', sub: 'Últimas 24h', icon: <Clock size={14} />, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    WEEK: { label: 'Semana', sub: 'Últimos 7 días', icon: <Calendar size={14} />, color: 'text-blue-600', bg: 'bg-blue-50' },
-    MONTH: { label: 'Mes', sub: 'Últimos 30 días', icon: <Zap size={14} />, color: 'text-purple-600', bg: 'bg-purple-50' },
-    ALL: { label: 'Histórico', sub: 'Total acumulado', icon: <Globe size={14} />, color: 'text-indigo-600', bg: 'bg-indigo-50' }
+  const periodOptions: Record<TimePeriod, { label: string, icon: any, color: string, bg: string }> = {
+    TODAY: { label: 'Hoy', icon: <Clock size={14} />, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    WEEK: { label: 'Semana', icon: <Calendar size={14} />, color: 'text-blue-600', bg: 'bg-blue-50' },
+    MONTH: { label: 'Mes', icon: <Zap size={14} />, color: 'text-purple-600', bg: 'bg-purple-50' },
+    ALL: { label: 'Histórico', icon: <Globe size={14} />, color: 'text-indigo-600', bg: 'bg-indigo-50' }
   };
 
   const renderView = () => {
@@ -145,12 +143,12 @@ const App: React.FC = () => {
         <header className="px-8 py-6 flex flex-wrap justify-between items-center bg-white/80 backdrop-blur-md border-b border-slate-200 z-[50] shrink-0 gap-4">
           <div className="flex flex-col">
             <h1 className="text-2xl font-black text-slate-900 leading-none tracking-tighter uppercase italic">
-              {currentView === 'SALES' && 'Terminal de Ventas'}
-              {currentView === 'DASHBOARD' && 'Panel Analítico'}
-              {currentView === 'INVENTORY' && 'Inventario Pro'}
-              {currentView === 'SETTINGS' && 'Configuración'}
+              {currentView === 'SALES' && 'Terminal'}
+              {currentView === 'DASHBOARD' && 'Analítico'}
+              {currentView === 'INVENTORY' && 'Inventario'}
+              {currentView === 'SETTINGS' && 'Ajustes'}
             </h1>
-            <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mt-1.5">{config.appName} • Enterprise</p>
+            <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mt-1.5">{config.appName}</p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -182,7 +180,7 @@ const App: React.FC = () => {
                     {isPeriodFilterOpen && (
                       <>
                         <div className="fixed inset-0 z-[100]" onClick={() => setIsPeriodFilterOpen(false)} />
-                        <div className="absolute right-0 mt-3 w-52 bg-white border-2 border-slate-900 rounded-[1.25rem] shadow-2xl z-[110] p-1.5 animate-in zoom-in-95 origin-top-right">
+                        <div className="absolute right-0 mt-3 w-52 bg-white border-2 border-slate-900 rounded-[1.25rem] shadow-2xl z-[110] p-1.5 origin-top-right">
                           {Object.entries(periodOptions).map(([key, opt]) => (
                             <button
                               key={key}
@@ -211,7 +209,6 @@ const App: React.FC = () => {
                </div>
              )}
 
-             {/* Botón Pantalla Completa Estilo Player */}
              <button
                onClick={toggleFullscreen}
                className="p-2.5 bg-slate-900 text-white rounded-xl shadow-lg hover:bg-slate-800 transition-all active:scale-90 group flex items-center gap-2"
