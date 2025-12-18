@@ -27,8 +27,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     costMethod: CostMethod.DETAILED,
     ingredients: [
       { id: 'i1', name: 'Harina', quantity: 0.2, unit: 'kg', unitCost: 1000 },
-      { id: 'i2', name: 'Carne', quantity: 0.15, unit: 'kg', unitCost: 8500 },
-      { id: 'i3', name: 'Cebolla', quantity: 0.1, unit: 'kg', unitCost: 600 }
+      { id: 'i2', name: 'Carne', quantity: 0.15, unit: 'kg', unitCost: 8500 }
     ]
   },
   {
@@ -52,8 +51,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     costMethod: CostMethod.DETAILED,
     ingredients: [
       { id: 'i4', name: 'Pan', quantity: 1, unit: 'un', unitCost: 250 },
-      { id: 'i5', name: 'Palta', quantity: 0.1, unit: 'kg', unitCost: 5000 },
-      { id: 'i6', name: 'Tomate', quantity: 0.1, unit: 'kg', unitCost: 1200 }
+      { id: 'i5', name: 'Palta', quantity: 0.1, unit: 'kg', unitCost: 5000 }
     ]
   }
 ];
@@ -66,8 +64,7 @@ export const DEFAULT_CONFIG: AppConfig = {
 };
 
 export const ICON_OPTIONS = [
-  '🥟', '🍗', '🍱', '🌭', '🥤', '🍔', '🍟', '🍕', '🌮', '🌯', '🥘', '🍲', '🍜', '🍣', '🍤', 
-  '🍦', '🍩', '🍪', '🍰', '🥞', '🥓', '🍖', '🍳', '🥗', '🥣', '🥢', '🧂', '🥫', '🧇', '🥨'
+  '🥟', '🍗', '🍱', '🌭', '🥤', '🍔', '🍟', '🍕', '🌮', '🌯', '🥘', '🍲', '🍜', '🍣', '🍤'
 ];
 
 export const MENU_ITEMS = [

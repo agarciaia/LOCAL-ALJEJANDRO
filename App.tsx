@@ -148,7 +148,7 @@ const App: React.FC = () => {
               {currentView === 'INVENTORY' && 'Inventario'}
               {currentView === 'SETTINGS' && 'Ajustes'}
             </h1>
-            <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mt-1.5">{config.appName}</p>
+            <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mt-1.5">{config.appName} • Online</p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -212,7 +212,6 @@ const App: React.FC = () => {
              <button
                onClick={toggleFullscreen}
                className="p-2.5 bg-slate-900 text-white rounded-xl shadow-lg hover:bg-slate-800 transition-all active:scale-90 group flex items-center gap-2"
-               title={isFullscreen ? "Salir de Cine" : "Modo Cine"}
              >
                {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
                <span className="hidden md:block text-[9px] font-black uppercase tracking-widest px-1">Full</span>
