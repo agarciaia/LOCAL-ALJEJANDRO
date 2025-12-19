@@ -24,7 +24,9 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 2500,
     image: '',
     icon: '🥟',
+    sellerName: 'Juan',
     costMethod: CostMethod.DETAILED,
+    yield: 1,
     ingredients: [
       { id: 'i1', name: 'Harina', quantity: 0.2, unit: 'kg', unitCost: 1000 },
       { id: 'i2', name: 'Carne', quantity: 0.15, unit: 'kg', unitCost: 8500 },
@@ -38,6 +40,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 8500,
     image: '',
     icon: '🍗',
+    sellerName: 'Maria',
     costMethod: CostMethod.FIXED,
     fixedCost: 4200,
     ingredients: []
@@ -49,7 +52,9 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 3200,
     image: '',
     icon: '🌭',
+    sellerName: 'Juan',
     costMethod: CostMethod.DETAILED,
+    yield: 1,
     ingredients: [
       { id: 'i4', name: 'Pan', quantity: 1, unit: 'un', unitCost: 250 },
       { id: 'i5', name: 'Palta', quantity: 0.1, unit: 'kg', unitCost: 5000 },
@@ -67,7 +72,12 @@ export const DEFAULT_CONFIG: AppConfig = {
 
 export const ICON_OPTIONS = [
   '🥟', '🍗', '🍱', '🌭', '🥤', '🍔', '🍟', '🍕', '🌮', '🌯', '🥘', '🍲', '🍜', '🍣', '🍤', 
-  '🍦', '🍩', '🍪', '🍰', '🥞', '🥓', '🍖', '🍳', '🥗', '🥣', '🥢', '🧂', '🥫', '🧇', '🥨'
+  '🍦', '🍩', '🍪', '🍰', '🥞', '🥓', '🍖', '🍳', '🥗', '🥣', '🥢', '🧂', '🥫', ' waffle', '🥨',
+  '🥯', '🥐', '🍞', '🥖', '🥨', '🧀', '🥩', '🥓', '🍔', '🍟', '🍕', '🌭', '🥪', '🌮', '🌯',
+  '🍳', '🥘', '🍲', '🥣', '🥗', '🍿', '🧈', '🧂', '🥫', '🍱', '🍘', '🍙', '🍚', '🍛', '🍜',
+  '🍝', '🍠', '🍢', '🍣', '🍤', '🍥', '🥮', '🍡', '🥟', '🥠', '🥡', '🍦', '🍧', '🍨', '🍩',
+  '🍪', '🎂', '🍰', '🧁', '🥧', '🍫', '🍬', '🍭', '🍮', '🍯', '🍼', '🥛', '☕', '🍵', '🍶',
+  '🍷', '🍸', '🍹', '🍺', '🍻', '🥂', '🥃', '🥤', '🧃', '🧉', '🧊'
 ];
 
 export const MENU_ITEMS = [

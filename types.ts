@@ -23,6 +23,7 @@ export interface Product {
   costMethod: CostMethod;
   fixedCost?: number;
   ingredients: Ingredient[];
+  yield?: number; // Cantidad de unidades que rinde la receta (ej: 20kg harina -> 80 empanadas)
 }
 
 export interface Category {

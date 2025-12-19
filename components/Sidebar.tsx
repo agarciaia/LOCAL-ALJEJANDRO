@@ -65,7 +65,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, con
               }`}
             >
               <span className={`${isActive ? 'opacity-100' : 'opacity-60'} shrink-0`}>
-                {React.cloneElement(item.icon as React.ReactElement, { size: isCollapsed ? 22 : 20 })}
+                {/* // Fix: Use React.ReactElement<any> to allow passing 'size' prop via cloneElement to Lucide icons */}
+                {React.cloneElement(item.icon as React.ReactElement<any>, { size: isCollapsed ? 22 : 20 })}
               </span>
               {!isCollapsed && <span className="truncate">{item.label}</span>}
               
