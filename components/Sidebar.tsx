@@ -22,7 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, con
   const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
   return (
-    <aside className={`${isCollapsed ? 'w-20' : 'w-64'} border-r flex flex-col h-screen sticky top-0 transition-all duration-300 ease-in-out z-30 ${bgStyles[config.sidebarStyle]}`}>
+    <aside id="sidebar-nav" className={`${isCollapsed ? 'w-20' : 'w-64'} border-r flex flex-col h-screen sticky top-0 transition-all duration-300 ease-in-out z-30 ${bgStyles[config.sidebarStyle]}`}>
       {/* Botón de Toggle Manual */}
       <button 
         onClick={toggleSidebar}
@@ -43,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, con
           >
             🍔
           </span>
-          {!isCollapsed && <span className="truncate">{config.appName}</span>}
+          {!isCollapsed && <span className="whitespace-nowrap overflow-hidden text-ellipsis min-w-0">{config.appName}</span>}
         </h1>
       </div>
       

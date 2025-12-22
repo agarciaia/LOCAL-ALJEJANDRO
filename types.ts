@@ -51,6 +51,10 @@ export interface AppConfig {
   themeColor: string;
   panelBg: 'bg-slate-50' | 'bg-gray-50' | 'bg-zinc-50' | 'bg-blue-50/30';
   sidebarStyle: 'light' | 'dark' | 'glass';
+  // Contact Info
+  address?: string;
+  phone?: string;
+  deliveryMode?: string;
 }
 
 export type View = 'SALES' | 'DASHBOARD' | 'INVENTORY' | 'SETTINGS';

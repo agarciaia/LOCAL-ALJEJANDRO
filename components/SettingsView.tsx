@@ -1,16 +1,17 @@
 
 import React, { useState } from 'react';
 import { AppConfig, Category } from '../types';
-import { Palette, Layout, UserCircle2, Save, Edit2, Check, Sparkles, Monitor } from 'lucide-react';
+import { Palette, Layout, UserCircle2, Save, Edit2, Check, Sparkles, Monitor, GraduationCap, PlayCircle, Store, Phone, MapPin, Truck } from 'lucide-react';
 
 interface SettingsViewProps {
   config: AppConfig;
   onConfigChange: (newConfig: AppConfig) => void;
   categories: Category[];
   onUpdateCategory: (updatedCategory: Category) => void;
+  onStartTutorial?: () => void; // Prop opcional para no romper tipos si no se pasa
 }
 
-export const SettingsView: React.FC<SettingsViewProps> = ({ config, onConfigChange, categories, onUpdateCategory }) => {
+export const SettingsView: React.FC<SettingsViewProps> = ({ config, onConfigChange, categories, onUpdateCategory, onStartTutorial }) => {
   const [renamingSeller, setRenamingSeller] = useState<{ old: string; new: string } | null>(null);
 
   const uniqueSellers: string[] = Array.from(new Set(categories.map(c => c.sellerName || 'Admin')));
@@ -39,7 +40,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ config, onConfigChan
   ];
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8 pb-24 animate-in fade-in slide-in-from-bottom-6 duration-700">
+    <div id="settings-container" className="max-w-5xl mx-auto space-y-8 pb-24 animate-in fade-in slide-in-from-bottom-6 duration-700">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
@@ -70,13 +71,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ config, onConfigChan
 
             <div className="space-y-6">
               <div>
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2 px-1">Nombre del Sistema</label>
+                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2 px-1">Nombre del Local</label>
                 <input 
                   type="text" 
                   value={config.appName}
                   onChange={e => updateConfig({ appName: e.target.value })}
                   className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-[1.25rem] font-black text-slate-900 text-sm focus:ring-4 focus:ring-slate-100 transition-all outline-none"
-                  placeholder="Ej: Mi Negocio"
+                  placeholder="Ej: DONDE PEPE"
                 />
               </div>
 
@@ -108,10 +109,81 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ config, onConfigChan
               </div>
             </div>
           </section>
+
+           {/* SECCIÓN TUTORIAL */}
+           <section className="bg-gradient-to-br from-indigo-600 to-indigo-800 p-8 rounded-[2.5rem] border border-indigo-500 shadow-xl shadow-indigo-200/50 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-12 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+              
+              <div className="relative z-10 text-white">
+                <div className="flex items-center gap-3 mb-4">
+                   <div className="p-2 bg-white/20 rounded-xl backdrop-blur-md">
+                      <GraduationCap size={20} />
+                   </div>
+                   <h3 className="font-black uppercase tracking-tight">Centro de Aprendizaje</h3>
+                </div>
+                
+                <p className="text-xs font-medium text-indigo-100 mb-6 leading-relaxed">
+                   ¿Nuevo en el sistema? Inicia el recorrido guiado para aprender a gestionar tu negocio paso a paso.
+                </p>
+
+                <button 
+                  onClick={onStartTutorial}
+                  className="w-full py-4 bg-white text-indigo-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95"
+                >
+                   <PlayCircle size={16} />
+                   Iniciar Tutorial
+                </button>
+              </div>
+           </section>
         </div>
 
         {/* Interfaz y Layout */}
         <div className="lg:col-span-8 space-y-8">
+          
+          {/* NUEVA TARJETA: DATOS DE CONTACTO */}
+          <section className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-xl shadow-slate-100/50 space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-orange-50 rounded-xl text-orange-600"><Store size={20} /></div>
+                <div>
+                   <h3 className="font-black text-slate-900 uppercase tracking-tight">Datos de Contacto & Ubicación</h3>
+                   <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest">Información visible para reportes y tickets</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div>
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-1 flex items-center gap-2"><MapPin size={10}/> Dirección del Local</label>
+                    <input 
+                      type="text" 
+                      value={config.address || ''}
+                      onChange={e => updateConfig({ address: e.target.value })}
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-[1.25rem] font-bold text-slate-700 text-xs focus:ring-4 focus:ring-slate-100 transition-all outline-none"
+                      placeholder="Ej: 6 Poniente 7527, esquina 20 Sur"
+                    />
+                 </div>
+                 <div>
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-1 flex items-center gap-2"><Phone size={10}/> WhatsApp / Teléfono</label>
+                    <input 
+                      type="text" 
+                      value={config.phone || ''}
+                      onChange={e => updateConfig({ phone: e.target.value })}
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-[1.25rem] font-bold text-slate-700 text-xs focus:ring-4 focus:ring-slate-100 transition-all outline-none"
+                      placeholder="Ej: +56 9 8452 0284"
+                    />
+                 </div>
+                 <div className="md:col-span-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-1 flex items-center gap-2"><Truck size={10}/> Modalidad de Atención</label>
+                    <input 
+                      type="text" 
+                      value={config.deliveryMode || ''}
+                      onChange={e => updateConfig({ deliveryMode: e.target.value })}
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-[1.25rem] font-bold text-slate-700 text-xs focus:ring-4 focus:ring-slate-100 transition-all outline-none"
+                      placeholder="Ej: Delivery y Retiros"
+                    />
+                 </div>
+              </div>
+          </section>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <section className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-xl shadow-slate-100/50 space-y-6">
               <div className="flex items-center gap-3">
